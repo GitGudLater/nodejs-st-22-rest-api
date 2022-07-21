@@ -10,7 +10,7 @@ import {
 import { AppService } from './app.service';
 import { IUser } from './dto/user';
 import * as crypto from 'crypto';
-import { IUserDTO } from './dto/userdto';
+import { UserDTO } from './dto/userdto';
 
 @Controller()
 export class AppController {
@@ -58,7 +58,7 @@ export class AppController {
 
   @Post('addUser')
   @HttpCode(204)
-  async addUser(@Body() newUser: IUserDTO) {
+  async addUser(@Body() newUser: UserDTO) {
     this.users.push({
       ...newUser,
       id: crypto.randomUUID(),
@@ -78,7 +78,7 @@ export class AppController {
   }
 
   @Post('updateUserById/:id')
-  async updateUser(@Param() params, @Body() updatedUser: IUserDTO) {
+  async updateUser(@Param() params, @Body() updatedUser: UserDTO) {
     this.users.map((user) => {
       if (user.id == params.id) {
         user = {
