@@ -43,16 +43,10 @@ export class AppController {
 
   @Get('findBySubstring/:loginSubstring')
   getUsersListByLogin(@Param() params, @Body() limit: number): IUser[] {
-    const filteredUsers = this.users.map((user) => {
-      if (user.login.indexOf(params.loginSubstring) !== -1 && limit > 0) {
-        limit--;
-        return user;
-      }
-    });
-    return filteredUsers.sort(
-      (a, b) =>
-        b.login.indexOf(params.loginSubstring) -
-        a.login.indexOf(params.loginSubstring),
+    return this.appService.sortBySubstring(
+      this.users,
+      params.loginSubstring,
+      limit,
     );
   }
 
