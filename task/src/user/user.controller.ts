@@ -34,11 +34,12 @@ export class UserController {
 
   @Get('getAutoSuggestUsers')
   getUsersListByLogin(
-    @Query() query: { loginSubstring: string; limit: number },
+    @Query() loginSubstring: string,
+    @Query() limit: string,
   ): IUser[] {
     return this.userService.findLimitedUsersBySubstring(
-      query.loginSubstring,
-      query.limit,
+      loginSubstring,
+      Number(limit),
     );
   }
 
