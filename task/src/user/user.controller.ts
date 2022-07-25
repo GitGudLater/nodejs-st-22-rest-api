@@ -34,13 +34,10 @@ export class UserController {
 
   @Get()
   getAutoSuggestUsers(
-    @Query() loginSubstring: string,
-    @Query() limit: string,
+    @Query() query: { loginSubstring: string; limit: number }
   ): IUser[] {
-    return this.userService.findLimitedUsersBySubstring(
-      loginSubstring,
-      Number(limit),
-    );
+    const { loginSubstring, limit } = query;
+    return this.userService.findLimitedUsersBySubstring(loginSubstring, limit);
   }
 
   @Post()
