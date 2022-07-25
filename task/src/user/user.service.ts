@@ -12,13 +12,15 @@ export class UserService {
     return this.users;
   }
   findLimitedUsersBySubstring(loginSubstring: string, limit: number): IUser[] {
+    if (!loginSubstring) return this.users;
     return this.users
       .map((user) => {
-        if (user.login.indexOf(loginSubstring) !== -1 && limit > 0) {
+        if (user.login.includes(loginSubstring) && limit > 0) {
           limit--;
           return user;
         }
       })
+      .filter((user) => !user.isDeleted)
       .sort(
         (a, b) =>
           b.login.indexOf(loginSubstring) - a.login.indexOf(loginSubstring),

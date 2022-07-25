@@ -32,8 +32,8 @@ export class UserController {
     return this.userService.findUserById(id);
   }
 
-  @Get('getAutoSuggestUsers')
-  getUsersListByLogin(
+  @Get()
+  getAutoSuggestUsers(
     @Query() loginSubstring: string,
     @Query() limit: string,
   ): IUser[] {
