@@ -4,14 +4,17 @@ import {
   Delete,
   Get,
   HttpCode,
+  HttpStatus,
   Param,
   Post,
   Put,
   Query,
+  Res,
 } from '@nestjs/common';
 import { IUser } from 'src/interfaces/models/user';
-import { IUserDTO } from 'src/interfaces/dto/userdto';
+import { UserDTO } from 'src/interfaces/dto/userdto';
 import { UserService } from './user.service';
+import { Response } from 'express';
 
 @Controller()
 export class UserController {
@@ -41,8 +44,11 @@ export class UserController {
 
   @Post()
   @HttpCode(201)
-  addUser(@Body() newUser: IUserDTO): IUser {
-    return this.userService.addUser(newUser);
+  addUser(@Body() newUser: UserDTO, @Res() response: Response) {
+    const user = this.userService.addUser(newUser);
+    user
+      ? response.status(HttpStatus.CREATED).send('User created')
+      : response.status(HttpStatus.CONFLICT).send('User login already exist');
   }
 
   @Delete(':id')
@@ -52,7 +58,7 @@ export class UserController {
   }
 
   @Put('id')
-  updateUser(@Param('id') id: string, @Body() updatedUser: IUserDTO) {
+  updateUser(@Param('id') id: string, @Body() updatedUser: UserDTO) {
     return this.userService.updateUser(id, updatedUser);
   }
 }

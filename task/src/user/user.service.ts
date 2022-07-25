@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { IUser } from 'src/interfaces/models/user';
-import { IUserDTO } from 'src/interfaces/dto/userdto';
+import { UserDTO } from 'src/interfaces/dto/userdto';
 @Injectable()
 export class UserService {
   private users: IUser[] = [];
@@ -24,7 +24,9 @@ export class UserService {
           b.login.indexOf(loginSubstring) - a.login.indexOf(loginSubstring),
       );
   }
-  addUser(newUser: IUserDTO): IUser {
+  addUser(newUser: UserDTO): IUser {
+    if (this.users.find((user) => user.login == newUser.login))
+      return undefined;
     this.users.push({
       ...newUser,
       id: crypto.randomUUID(),
@@ -36,7 +38,7 @@ export class UserService {
     this.users[this.users.findIndex((user) => (user.id = userId))].isDeleted =
       true;
   }
-  updateUser(userId: string, updatedUser: IUserDTO): IUser {
+  updateUser(userId: string, updatedUser: UserDTO): IUser {
     this.users[this.users.findIndex((user) => (user.id = userId))] = {
       id: userId,
       isDeleted: this.findUserById(userId).isDeleted,
