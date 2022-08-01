@@ -11,33 +11,34 @@ import {
   Query,
   Res,
 } from '@nestjs/common';
-import { IUser } from 'src/interfaces/models/user';
 import { UserDTO } from 'src/interfaces/dto/userdto';
-import { UserService } from './user.service';
 import { Response } from 'express';
+import { User } from 'src/db/entities/user.entity';
+import { UserService } from 'src/services/user/user.service';
 
 @Controller()
 export class UserController {
-  private users: IUser[] = [];
-
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  getUsers(): IUser[] {
-    return this.userService.getUsers();
+  async getUsers(): Promise<User[]> {
+    return await this.userService.getUsers();
   }
 
   @Get(':id')
-  getUserById(@Param('id') id: string): IUser {
-    return this.userService.findUserById(id);
+  async getUserById(@Param('id') id: string): Promise<User> {
+    return await this.userService.findUserById(id);
   }
 
   @Get()
-  getAutoSuggestUsers(
-    @Query() query: { loginSubstring: string; limit: number }
-  ): IUser[] {
+  async getAutoSuggestUsers(
+    @Query() query: { loginSubstring: string; limit: number },
+  ): Promise<User[]> {
     const { loginSubstring, limit } = query;
-    return this.userService.findLimitedUsersBySubstring(loginSubstring, limit);
+    return await this.userService.findLimitedUsersBySubstring(
+      loginSubstring,
+      limit,
+    );
   }
 
   @Post()
