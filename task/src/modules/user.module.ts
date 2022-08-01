@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from 'src/db/entities/user.entity';
-import { UserDalService } from 'src/db/dal/user.dal';
+import { UserDalService } from 'src/data-access/dal/user.dal';
+import { User } from 'src/data-access/entities/user.entity';
+import { UserController } from 'src/routers/controllers/user/user.controller';
 import { UserService } from 'src/services/user/user.service';
-import { UserController } from 'src/controllers/user/user.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],

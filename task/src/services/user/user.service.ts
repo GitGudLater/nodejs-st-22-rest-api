@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { UserDalService } from 'src/data-access/dal/user.dal';
+import { User } from 'src/data-access/entities/user.entity';
 import { UserDTO } from 'src/interfaces/dto/userdto';
-import { User } from 'src/db/entities/user.entity';
-import { UserDalService } from 'src/db/dal/user.dal';
 
 @Injectable()
 export class UserService {

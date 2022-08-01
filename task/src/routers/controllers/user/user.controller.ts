@@ -13,8 +13,8 @@ import {
 } from '@nestjs/common';
 import { UserDTO } from 'src/interfaces/dto/userdto';
 import { Response } from 'express';
-import { User } from 'src/db/entities/user.entity';
 import { UserService } from 'src/services/user/user.service';
+import { User } from 'src/data-access/entities/user.entity';
 
 @Controller()
 export class UserController {
