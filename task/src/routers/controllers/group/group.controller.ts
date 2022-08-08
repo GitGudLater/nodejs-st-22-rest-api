@@ -8,6 +8,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Res,
 } from '@nestjs/common';
 import { Response } from 'express';
@@ -18,6 +19,12 @@ import { GroupDTO } from 'src/interfaces/dto/groupdto';
 @Controller('groups')
 export class GroupController {
   constructor(private readonly groupService: GroupService) {}
+
+  @Post('addUserToGroup')
+  addUsersToGroup(@Query() query: { groupId: string; userId: string }) {
+    const { groupId, userId } = query;
+    this.groupService.addUserToGroup(userId, groupId);
+  }
 
   @Get()
   async getGroups(): Promise<Group[]> {
