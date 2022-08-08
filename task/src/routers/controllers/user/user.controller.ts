@@ -16,7 +16,7 @@ import { Response } from 'express';
 import { UserService } from 'src/services/user/user.service';
 import { User } from 'src/data-access/entities/user.entity';
 
-@Controller()
+@Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

@@ -3,10 +3,12 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { User } from 'src/data-access/entities/user.entity';
+import { GroupModule } from './group/group.module';
 
 @Module({
   imports: [
     UserModule,
+    GroupModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
