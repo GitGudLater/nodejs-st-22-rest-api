@@ -12,8 +12,9 @@ export class UsersToGroupsDalService {
   ) {}
   
   addUserToGroup(user: User, groupId: string) {
-    this.groupRepository
-      .findOneBy({ id: groupId })
-      .then((group) => group.users.push(user));
+    this.groupRepository.findOneBy({ id: groupId }).then((group) => {
+      group.users.push(user);
+      this.groupRepository.update({ id: groupId }, group);
+    });
   }
 }
