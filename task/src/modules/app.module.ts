@@ -5,9 +5,11 @@ import { UserModule } from './user/user.module';
 import { User } from 'src/data-access/entities/user.entity';
 import { GroupModule } from './group/group.module';
 import { Group } from 'src/data-access/entities/group.entity';
+import { LoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
+    LoggerModule,
     UserModule,
     GroupModule,
     ConfigModule.forRoot(),
@@ -21,7 +23,7 @@ import { Group } from 'src/data-access/entities/group.entity';
       entities: [User, Group],
       synchronize: true,
       logging: false,
-      url: process.env.DB_URL
+      url: process.env.DB_URL,
     }),
   ],
 })
