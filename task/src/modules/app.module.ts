@@ -18,7 +18,13 @@ import { User } from 'src/data-access/entities/user.entity';
       entities: [User],
       synchronize: true,
       logging: false,
-      url: process.env.DB_URL
+      url: process.env.DB_URL,
+      ssl: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        }
+      },
     }),
   ],
 })
