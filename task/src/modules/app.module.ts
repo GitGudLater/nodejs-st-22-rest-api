@@ -9,7 +9,6 @@ import { LoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
-    LoggerModule,
     UserModule,
     GroupModule,
     ConfigModule.forRoot(),
