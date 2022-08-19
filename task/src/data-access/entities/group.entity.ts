@@ -17,7 +17,7 @@ export class Group {
   name: string;
 
   @Column()
-  permissions: Array<Permission>;
+  permissions: Permission;
 
   @Column()
   isDeleted: boolean;
