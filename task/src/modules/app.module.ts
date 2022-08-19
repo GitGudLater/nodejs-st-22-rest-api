@@ -9,7 +9,6 @@ import { LoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
-    LoggerModule,
     UserModule,
     GroupModule,
     ConfigModule.forRoot(),
@@ -24,6 +23,12 @@ import { LoggerModule } from './logger/logger.module';
       synchronize: true,
       logging: false,
       url: process.env.DB_URL,
+      ssl: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        }
+      },
     }),
   ],
 })
