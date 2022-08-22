@@ -18,5 +18,5 @@ export class GroupDTO {
       developerNote: 'The validated string must contain characters.',
     },
   })
-  permissions: Permission;
+  permissions: Permission[];
 }

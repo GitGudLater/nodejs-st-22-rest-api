@@ -16,8 +16,8 @@ export class Group {
   @Column()
   name: string;
 
-  @Column()
-  permissions: Permission;
+  @Column('simple-array')
+  permissions: Permission[];
 
   @Column()
   isDeleted: boolean;
