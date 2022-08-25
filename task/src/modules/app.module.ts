@@ -28,6 +28,7 @@ import { Group } from 'src/data-access/entities/group.entity';
           rejectUnauthorized: false,
         }
       },
+      autoLoadEntities: true,
     }),
   ],
 })

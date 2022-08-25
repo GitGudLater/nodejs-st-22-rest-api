@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserDalService } from 'src/data-access/dal/user.dal';
 import { User } from 'src/data-access/entities/user.entity';
 import { UserDTO } from 'src/interfaces/dto/userdto';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class UserService {
