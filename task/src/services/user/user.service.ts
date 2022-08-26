@@ -14,6 +14,13 @@ export class UserService {
       UserService.name,
     ),
   ) {}
+  
+  findUserByLogin(userLogin: string): Promise<User> {
+    const argsCollection: Argument[] = [];
+    argsCollection.push({ argumentName: 'userLogin', value: userLogin });
+    this.logger.serviceMethodLog('findByUserLogin', argsCollection);
+    return this.userDal.selectUserByLogin(userLogin);
+  }
 
   findUserById(userId: string): Promise<User> {
     const argsCollection: Argument[] = [];

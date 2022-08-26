@@ -11,5 +11,6 @@ import { LoggerModule } from '../logger/logger.module';
   imports: [TypeOrmModule.forFeature([User]), LoggerModule],
   controllers: [UserController],
   providers: [UserService, UserDalService, ServiceLogger],
+  exports: [UserService],
 })
 export class UserModule {}

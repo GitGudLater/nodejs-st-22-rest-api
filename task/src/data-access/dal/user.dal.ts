@@ -11,6 +11,9 @@ export class UserDalService {
     private usersRepository: Repository<User>,
   ) {}
 
+  selectUserByLogin(userLogin: string): Promise<User> {
+    return this.usersRepository.findOneBy({ login: userLogin });
+  }
   selectUserById(userId: string): Promise<User> {
     return this.usersRepository.findOneBy({ id: userId });
   }
