@@ -3,7 +3,7 @@ import { LocalAuthGuard } from 'src/guards/local/local-auth.guard';
 import { AccessToken } from 'src/interfaces/a-token/access-token-interface';
 import { AuthService } from 'src/services/auth/auth.service';
 
-@Controller('v1/auth')
+@Controller('group/auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
