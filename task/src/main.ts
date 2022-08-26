@@ -7,7 +7,10 @@ import { ExceptionsFilter } from './middleware/exception.filter';
 
 async function bootstrap() {
   dotenv.config({ path: __dirname + '/.env' });
-  const app = await NestFactory.create(AppModule, { bufferLogs: true });
+  const app = await NestFactory.create(AppModule, {
+    bufferLogs: true,
+    cors: true,
+  });
   app.useLogger(new ServiceLogger);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new ExceptionsFilter());
