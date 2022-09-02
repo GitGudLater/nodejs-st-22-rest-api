@@ -1,4 +1,4 @@
-import { User } from '../models/user.model';
+import { User } from "src/data-access/entities/user.entity";
 
 export const user: User = {
   id: 'testUserId',
